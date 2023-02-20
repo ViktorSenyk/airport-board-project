@@ -1,0 +1,54 @@
+.search {
+  width: 720px;
+  margin: 0 auto;
+  &__title {
+    font-size: 70px;
+    font-weight: 300;
+    margin-bottom: 25px;
+  }
+
+  &__wrapper {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 15px;
+      display: block;
+      width: 44px;
+      height: 44px;
+      background: url(https://cdn0.iconfinder.com/data/icons/very-basic-2-android-l-lollipop-icon-pack/24/search-512.png) center;
+      background-size: contain;
+      filter: opacity(0.4);
+    }
+  }
+
+  &__input {
+    width: 520px;
+    height: 80px;
+    outline: none;
+    border: none;
+    font-size: 24px;
+    padding: 0 20px 0 70px;
+  }
+
+  &__button {
+    position: relative;
+    width: 200px;
+    height: 80px;
+    background-color: #1eb7ee;
+    border: none;
+    border-top-right-radius: 80px;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: -1px;
+    color: #fff;
+    padding: 0 20px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      border-top-right-radius: 40px;
+    }
+  }
+}
