@@ -1,6 +1,6 @@
 .search {
   width: 720px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   &__title {
     font-size: 70px;
     font-weight: 300;
@@ -17,7 +17,8 @@
       display: block;
       width: 44px;
       height: 44px;
-      background: url(https://cdn0.iconfinder.com/data/icons/very-basic-2-android-l-lollipop-icon-pack/24/search-512.png) center;
+      background: url(https://cdn0.iconfinder.com/data/icons/very-basic-2-android-l-lollipop-icon-pack/24/search-512.png)
+        center;
       background-size: contain;
       filter: opacity(0.4);
     }
@@ -39,10 +40,10 @@
     background-color: #1eb7ee;
     border: none;
     border-top-right-radius: 80px;
+    font-family: 'Open Sans', sans-serif;
     font-size: 26px;
     font-weight: 700;
     text-align: left;
-    letter-spacing: -1px;
     color: #fff;
     padding: 0 20px;
     transition: 0.3s ease-in-out;
