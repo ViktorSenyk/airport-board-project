@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 #root {
   min-height: 100%;
@@ -15,4 +16,12 @@ body {
 }
 main {
   flex: 1 1 auto;
+  background-color: #e6e6e6;
+  padding: 40px 0 20px;
+}
+
+.container {
+  width: 1120px;
+  height: 100%;
+  margin: 0 auto;
 }
