@@ -12,11 +12,13 @@ export default function Search() {
         <input
           className="search__input"
           type="text"
-          placeholder='Airline, destination or flight #'
+          placeholder="Airline, destination or flight #"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={e => setInputValue(e.target.value)}
         />
-        <button className="search__button" onClick={() => console.log(inputValue)}>SEARCH</button>
+        <button className="search__button" onClick={() => console.log(inputValue)}>
+          SEARCH
+        </button>
       </div>
     </div>
   );

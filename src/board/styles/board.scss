@@ -1,8 +1,7 @@
 .board {
-    &__content {
-        // min-height: 200px;
-        background-color: white;
-        border-radius: 60px 60px 0 0;
-        overflow: hidden;
-    }
+  &__content {
+    background-color: white;
+    border-radius: 60px 60px 0 0;
+    overflow: hidden;
+  }
 }

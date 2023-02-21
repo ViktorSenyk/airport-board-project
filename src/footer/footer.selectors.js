@@ -1,1 +1,1 @@
-export const footerLinksDataSelector = (state) => state.footer.footerLinksData;
+export const footerLinksDataSelector = state => state.footer.footerLinksData;

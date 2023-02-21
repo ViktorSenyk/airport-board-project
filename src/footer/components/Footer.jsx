@@ -10,7 +10,7 @@ function Footer({ linksData }) {
     <footer className="footer">
       <div className="container">
         <nav className="footer__navigation">
-          {linksData.map((linksData) => (
+          {linksData.map(linksData => (
             <FooterLinksList key={linksData.id} linksData={linksData} />
           ))}
           <div className="footer__contact-and-follow">
@@ -68,7 +68,7 @@ function Footer({ linksData }) {
   );
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   linksData: footerSelectors.footerLinksDataSelector(state),
 });
 
