@@ -1,9 +1,10 @@
 .filter {
   min-height: 140px;
-  background-color: red;
+
   &__buttons-wrapper {
     position: relative;
   }
+
   &__button {
     position: absolute;
     top: 0;
@@ -12,27 +13,122 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     font-weight: 600;
+    text-align: end;
     color: #fff;
     background-color: #73d2f0;
     border: none;
     border-radius: 0 60px 0 0;
     transition: 0.3s ease-in-out;
+    padding: 0 135px 0 0;
     z-index: 5;
     cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 285px;
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: url('https://www.pngkey.com/png/full/138-1382606_icon-airplane-icon-blue-png.png')
+        no-repeat center;
+      background-size: contain;
+      filter: brightness(500%);
+    }
+
     &:hover {
       background-color: #1eb7ee;
     }
+
     &:last-child {
       right: 0;
+      text-align: start;
       border-radius: 60px 0 0 0;
+      padding: 0 0 0 180px;
+
+      &::before {
+        left: 130px;
+        transform: rotate(90deg);
+      }
     }
+
     &_current {
       background-color: #fff;
       color: #1eb7ee;
       z-index: 6;
+
+      &::before {
+        filter: brightness(110%);
+      }
+
       &:hover {
         background-color: #fff;
       }
+    }
+  }
+
+  &__date-wrapper {
+    display: flex;
+    width: 1200px;
+    height: 140px;
+    padding: 85px 20px 0;
+  }
+
+  &__date-input-label {
+    margin-right: 30px;
+    p {
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      color: #1eb7ee;
+    }
+  }
+
+  &__date-input {
+    height: 40px;
+    width: 40px;
+    font-size: 40px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #1eb7ee;
+    background-image: url('https://raw.githubusercontent.com/rick-jackson/airport-board/dfeaf8e94a65944df9b0db76226dac50e3b53e91/src/components/toggleDate/icon/Untitled.svg');
+    background-repeat: no-repeat;
+    background-position: 44% 47%;
+    background-size: 120px 120px;
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  &__date-buttons {
+    display: flex;
+    width: 300px;
+    height: 100%;
+  }
+
+  &__date-button {
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    color: #b8b9b9;
+    border-bottom: 3px solid #d0d0d0;
+
+    & p:first-child {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    & p:last-child {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    &_current {
+      color: #1eb7ee;
+      border-bottom: 3px solid #1eb7ee;
     }
   }
 }
