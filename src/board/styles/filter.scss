@@ -115,6 +115,7 @@
     cursor: pointer;
     color: #b8b9b9;
     border-bottom: 3px solid #d0d0d0;
+    transition: 0.3s ease-in-out;
 
     & p:first-child {
       font-size: 12px;

@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as boardSelectors from '../board.selectors';
-import { isDeparturesSet, selectedDateSet } from '../board.actions';
+import { isDeparturesSet, fetchSelectedFlightsData } from '../board.actions';
 import moment from 'moment';
 
 import '../styles/filter.scss';
 
-function Filter({ selectedDate, isDepartures, isDeparturesSet, selectedDateSet }) {
-  const [selectedDay, selectedMonth, selectedYear] = selectedDate.split('-');
+function Filter({ selectedDate, isDepartures, isDeparturesSet, fetchSelectedFlightsData }) {
+  const [selectedDay, selectedMonth] = selectedDate.split('-');
   const currentDate = moment();
+  const yesterdayDate = currentDate.clone().subtract(1, 'days');
+  const tomorrowDate = currentDate.clone().add(1, 'days');
 
   return (
     <div className="filter">
@@ -33,31 +35,39 @@ function Filter({ selectedDate, isDepartures, isDeparturesSet, selectedDateSet }
             type="date"
             className="filter__date-input"
             id="filter-date-input"
-            onChange={e => selectedDateSet(e.target.value.split('-').reverse().join('-'))}
+            onChange={e => fetchSelectedFlightsData(e.target.value.split('-').reverse().join('-'))}
           />
         </label>
         <div className="filter__date-buttons">
           <div
-            className="filter__date-button"
-            onClick={() =>
-              selectedDateSet(currentDate.clone().subtract(1, 'days').format('DD-MM-YYYY'))
-            }
+            className={`filter__date-button ${
+              selectedDate === yesterdayDate.format('DD-MM-YYYY')
+                ? 'filter__date-button_current'
+                : ''
+            }`}
+            onClick={() => fetchSelectedFlightsData(yesterdayDate.format('DD-MM-YYYY'))}
           >
-            <p>{currentDate.clone().subtract(1, 'day').format('DD/MM')}</p>
+            <p>{yesterdayDate.format('DD/MM')}</p>
             <p>YESTERDAY</p>
           </div>
           <div
-            className="filter__date-button filter__date-button_current"
-            onClick={() => selectedDateSet(currentDate.format('DD-MM-YYYY'))}
+            className={`filter__date-button ${
+              selectedDate === currentDate.format('DD-MM-YYYY') ? 'filter__date-button_current' : ''
+            }`}
+            onClick={() => fetchSelectedFlightsData(currentDate.format('DD-MM-YYYY'))}
           >
             <p>{currentDate.format('DD/MM')}</p>
             <p>TODAY</p>
           </div>
           <div
-            className="filter__date-button"
-            onClick={() => selectedDateSet(currentDate.clone().add(1, 'days').format('DD-MM-YYYY'))}
+            className={`filter__date-button ${
+              selectedDate === tomorrowDate.format('DD-MM-YYYY')
+                ? 'filter__date-button_current'
+                : ''
+            }`}
+            onClick={() => fetchSelectedFlightsData(tomorrowDate.format('DD-MM-YYYY'))}
           >
-            <p>{currentDate.clone().add(1, 'days').format('DD/MM')}</p>
+            <p>{tomorrowDate.format('DD/MM')}</p>
             <p>TOMORROW</p>
           </div>
         </div>
@@ -73,7 +83,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   isDeparturesSet,
-  selectedDateSet,
+  fetchSelectedFlightsData,
 };
 
 export default connect(mapState, mapDispatch)(Filter);
