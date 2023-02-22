@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-// import { searchInfoSelector } from '../board.selectors';
 import { searchInfoSet } from '../board.actions';
 
 import '../styles/search.scss';
@@ -18,17 +17,13 @@ function Search({ searchInfoSet }) {
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
         />
-        <button className="search__button" onClick={() => searchInfoSet(inputValue)}>
+        <button className="search__button" onClick={() => searchInfoSet(inputValue.toUpperCase())}>
           SEARCH
         </button>
       </div>
     </div>
   );
 }
-
-// const mapState = state => ({
-//   searchValue: searchInfoSelector(state),
-// });
 
 const mapDispatch = {
   searchInfoSet,
