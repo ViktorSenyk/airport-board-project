@@ -1,43 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { departuresFlightsDataSelector, arrivalsFlightsDataSelector } from '../board.selectors';
+import {
+  departuresFlightsDataSelector,
+  arrivalsFlightsDataSelector,
+  isDeparturesSelector,
+  searchInfoSelector,
+} from '../board.selectors';
+import TableRow from './TableRow';
 
 import '../styles/table.scss';
 
-function Table({ departures, arrivals }) {
+function Table({ departures, arrivals, isDepartures, searchInfo }) {
+  const displayedFlights = isDepartures
+    ? departures.filter(flightInfo =>
+        `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
+      )
+    : arrivals.filter(flightInfo =>
+        `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
+      );
+
   return (
-    <ul className="table">
+    <div className="table">
       {departures.length === 0 && arrivals.length === 0 ? (
         <h5 className="table__null">No Flight</h5>
       ) : (
         <>
-          <li className="table__title">
-            <p>Terminal</p>
-            <p>Local time</p>
-            <p>Destination</p>
-            <p>Status</p>
-            <p>Airline</p>
-            <p>Flight</p>
-          </li>
-          {departures.map(flightInfo => (
-            <li className="table__row" key={flightInfo.ID}>
-              <p>{flightInfo.term}</p>
-              <p>Local time</p>
-              <p>{flightInfo['airportToID.city_en']}</p>
-              <p>Status</p>
-              <p>{flightInfo.airline.en.name}</p>
-              <p>{`${flightInfo['carrierID.IATA']}${flightInfo.fltNo}`}</p>
-            </li>
+          <div className="table__title">
+            <div className="table__cell">Terminal</div>
+            <div className="table__cell">Local time</div>
+            <div className="table__cell">Destination</div>
+            <div className="table__cell">Status</div>
+            <div className="table__cell">Airline</div>
+            <div className="table__cell">Flight</div>
+          </div>
+
+          {displayedFlights.map(flightInfo => (
+            <TableRow key={flightInfo.ID} flightInfo={flightInfo} />
           ))}
         </>
       )}
-    </ul>
+    </div>
   );
 }
 
 const mapState = state => ({
   departures: departuresFlightsDataSelector(state),
   arrivals: arrivalsFlightsDataSelector(state),
+  isDepartures: isDeparturesSelector(state),
+  searchInfo: searchInfoSelector(state),
 });
 
 export default connect(mapState)(Table);
