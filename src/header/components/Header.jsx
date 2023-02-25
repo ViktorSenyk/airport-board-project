@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="header">
       <a href="./" className="header__logo">
-        <img src="https://iev.aero/_nuxt/img/logo@2x.2d2c20b.png" alt="Logo" />
+        <img src="./images/header/logo.webp" alt="Logo" />
       </a>
       <nav className="header__navigation">
         <ul className="header__links">

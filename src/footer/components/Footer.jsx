@@ -59,7 +59,7 @@ function Footer({ linksData }) {
           <div className="footer__small-logo-wrapper footer__small-logo-wrapper_last">
             <a href="https://ufuture.com/uk/">
               Developed by <br />
-              <img src="https://iev.aero/images/smplLogo.png" alt="smpl logo" />
+              <img src="./images/footer/smpl-logo.webp" alt="smpl logo" />
             </a>
           </div>
         </div>
