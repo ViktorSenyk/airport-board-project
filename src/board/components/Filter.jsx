@@ -1,12 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as boardSelectors from '../board.selectors';
-import { isDeparturesSet, fetchSelectedFlightsData } from '../board.actions';
 import moment from 'moment';
 
 import '../styles/filter.scss';
 
-function Filter({ selectedDate, isDepartures, isDeparturesSet, fetchSelectedFlightsData }) {
+export default function Filter({
+  selectedDate,
+  isDepartures,
+  isDeparturesSet,
+  fetchSelectedFlightsData,
+}) {
   const [selectedDay, selectedMonth] = selectedDate.split('-');
   const currentDate = moment();
   const yesterdayDate = currentDate.clone().subtract(1, 'days');
@@ -75,15 +77,3 @@ function Filter({ selectedDate, isDepartures, isDeparturesSet, fetchSelectedFlig
     </div>
   );
 }
-
-const mapState = state => ({
-  selectedDate: boardSelectors.selectedDateSelector(state),
-  isDepartures: boardSelectors.isDeparturesSelector(state),
-});
-
-const mapDispatch = {
-  isDeparturesSet,
-  fetchSelectedFlightsData,
-};
-
-export default connect(mapState, mapDispatch)(Filter);

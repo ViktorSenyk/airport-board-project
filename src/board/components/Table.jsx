@@ -1,23 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {
-  departuresFlightsDataSelector,
-  arrivalsFlightsDataSelector,
-  isDeparturesSelector,
-  searchInfoSelector,
-} from '../board.selectors';
 import TableRow from './TableRow';
 
 import '../styles/table.scss';
 
-function Table({ departures, arrivals, isDepartures, searchInfo }) {
-  const displayedFlights = isDepartures
-    ? departures.filter(flightInfo =>
-        `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
-      )
-    : arrivals.filter(flightInfo =>
-        `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
-      );
+export default function Table({ departures, arrivals, isDepartures, searchInfo }) {
+  const filterForFligths = flights =>
+    flights.filter(flightInfo =>
+      `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
+    );
+  const displayedFlights = isDepartures ? filterForFligths(departures) : filterForFligths(arrivals);
 
   return (
     <div className="table">
@@ -42,12 +33,3 @@ function Table({ departures, arrivals, isDepartures, searchInfo }) {
     </div>
   );
 }
-
-const mapState = state => ({
-  departures: departuresFlightsDataSelector(state),
-  arrivals: arrivalsFlightsDataSelector(state),
-  isDepartures: isDeparturesSelector(state),
-  searchInfo: searchInfoSelector(state),
-});
-
-export default connect(mapState)(Table);

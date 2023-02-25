@@ -6,10 +6,12 @@ import {
 } from './board.actions';
 import moment from 'moment';
 
+const urlParams = new URLSearchParams(window.location.search);
+
 const initialState = {
-  selectedDate: moment().format('DD-MM-YYYY'),
-  searchInfo: '',
-  isDepartures: true,
+  selectedDate: urlParams.get('selectedDate') || moment().format('DD-MM-YYYY'),
+  searchInfo: urlParams.get('searchInfo') || '',
+  isDepartures: urlParams.get('isDepartures') === 'false' ? false : true,
   flightsData: { body: { departure: [], arrival: [] } },
 };
 
