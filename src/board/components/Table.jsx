@@ -4,11 +4,15 @@ import TableRow from './TableRow';
 import '../styles/table.scss';
 
 export default function Table({ departures, arrivals, isDepartures, searchInfo }) {
-  const filterForFligths = flights =>
-    flights.filter(flightInfo =>
-      `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
+  const filterForFlights = flights =>
+    flights.filter(
+      flightInfo =>
+        (flightInfo['airportFromID.name_en']
+          ? flightInfo['airportFromID.name_en'].includes(searchInfo)
+          : flightInfo['airportToID.city_en'].includes(searchInfo)) ||
+        `${flightInfo['carrierID.IATA'] || ''}${flightInfo.fltNo}`.includes(searchInfo),
     );
-  const displayedFlights = isDepartures ? filterForFligths(departures) : filterForFligths(arrivals);
+  const displayedFlights = isDepartures ? filterForFlights(departures) : filterForFlights(arrivals);
 
   return (
     <div className="table">

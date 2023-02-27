@@ -13,9 +13,9 @@ export default function Search({ defaultValue, searchInfoSet }) {
           <input
             className="search__input"
             type="search"
-            placeholder="Type flight #"
+            placeholder="City or flight #"
             value={inputValue}
-            onChange={e => setInputValue(e.target.value.toLocaleUpperCase())}
+            onChange={e => setInputValue(e.target.value)}
           />
           <input
             type="submit"
@@ -23,7 +23,7 @@ export default function Search({ defaultValue, searchInfoSet }) {
             className="search__button"
             onClick={e => {
               e.preventDefault();
-              searchInfoSet(inputValue.toUpperCase());
+              searchInfoSet(inputValue);
             }}
           />
         </form>
