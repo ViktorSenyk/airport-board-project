@@ -2,7 +2,9 @@
 
 ### [Site link](https://inquisitive-cupcake-a17fab.netlify.app/)
 
-Layout supports desktop (up-to-1920) version
+( Created with *create-react-app* )
+
+Layout support desktop (up-to-1920) version
 
 ### The tech stack is:
 
